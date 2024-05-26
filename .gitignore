@@ -1,0 +1,13 @@
+# datas
+datasets/
+recyclables_origin/
+test/
+
+# results
+runs/
+
+# models
+*.pt
+
+# etc
+__pycache__/

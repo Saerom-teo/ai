@@ -1,0 +1,8 @@
+names:
+ 0: battery_battery
+ 1: metalcan_iron
+ 2: metalcan_aluminum
+
+test: E:/Shinhan/Yolo/datasets/recyclables/images/test
+train: E:/Shinhan/Yolo/datasets/recyclables/images/train
+val: E:/Shinhan/Yolo/datasets/recyclables/images/val

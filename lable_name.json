@@ -1,0 +1,25 @@
+{
+    "labels": [
+        {
+            "no":0,
+            "en_cls": "battery",
+            "en_detail": "battery",
+            "ko_cls": "건전지",
+            "ko_detail": "건전지"
+        },
+        {
+            "no":1,
+            "en_cls": "metalcan",
+            "en_detail": "iron",
+            "ko_cls": "금속캔",
+            "ko_detail": "철캔"
+        },
+        {
+            "no":1,
+            "en_cls": "metalcan",
+            "en_detail": "aluminum",
+            "ko_cls": "금속캔",
+            "ko_detail": "알루미늄캔"
+        }
+    ]
+}
