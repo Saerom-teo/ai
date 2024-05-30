@@ -1,0 +1,102 @@
+{
+    "labels": [
+        {
+            "no":0,
+            "en_cls": "battery",
+            "en_detail": "battery",
+            "ko_cls": "건전지",
+            "ko_detail": "건전지"
+        },
+        {
+            "no":1,
+            "en_cls": "metal_can",
+            "en_detail": "iron",
+            "ko_cls": "금속캔",
+            "ko_detail": "철캔"
+        },
+        {
+            "no":2,
+            "en_cls": "metal_can",
+            "en_detail": "aluminum",
+            "ko_cls": "금속캔",
+            "ko_detail": "알루미늄캔"
+        },
+        {
+            "no":3,
+            "en_cls": "paper",
+            "en_detail": "paper",
+            "ko_cls": "종이",
+            "ko_detail": "종이"
+        },
+        {
+            "no":4,
+            "en_cls": "plastic_bottle",
+            "en_detail": "colored",
+            "ko_cls": "페트병",
+            "ko_detail": "유색단일"
+        },
+        {
+            "no":5,
+            "en_cls": "plastic_bottle",
+            "en_detail": "clear",
+            "ko_cls": "페트병",
+            "ko_detail": "무색단일"
+        },
+        {
+            "no":6,
+            "en_cls": "plastic",
+            "en_detail": "PE",
+            "ko_cls": "플라스틱",
+            "ko_detail": "PE"
+        },
+        {
+            "no":7,
+            "en_cls": "plastic",
+            "en_detail": "PS",
+            "ko_cls": "플라스틱",
+            "ko_detail": "PS"
+        },
+        {
+            "no":8,
+            "en_cls": "plastic",
+            "en_detail": "PP",
+            "ko_cls": "플라스틱",
+            "ko_detail": "PP"
+        },
+        {
+            "no":9,
+            "en_cls": "vinyl",
+            "en_detail": "vinyl",
+            "ko_cls": "비닐",
+            "ko_detail": "비닐"
+        },
+        {
+            "no":10,
+            "en_cls": "glass_bottle",
+            "en_detail": "colorless",
+            "ko_cls": "유리병",
+            "ko_detail": "투명"
+        },
+        {
+            "no":11,
+            "en_cls": "glass_bottle",
+            "en_detail": "green",
+            "ko_cls": "유리병",
+            "ko_detail": "녹색"
+        },
+        {
+            "no":12,
+            "en_cls": "glass_bottle",
+            "en_detail": "brown",
+            "ko_cls": "유리병",
+            "ko_detail": "갈색"
+        },
+        {
+            "no":13,
+            "en_cls": "styrofoam",
+            "en_detail": "styrofoam",
+            "ko_cls": "스티로폼",
+            "ko_detail": "스티로폼"
+        }
+    ]
+}
