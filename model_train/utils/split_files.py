@@ -2,9 +2,9 @@ import os
 import shutil
 import random
 
-def split_dataset(path, output_folder, train_ratio=0.7, val_ratio=0.15, test_ratio=0.15):
-    images_folder = f'{path}/images'
-    labels_folder = f'{path}/labels'
+def split_dataset(data_folder, output_folder, train_ratio=0.7, val_ratio=0.15, test_ratio=0.15):
+    images_folder = os.path.join(data_folder, 'images')
+    labels_folder = os.path.join(data_folder, 'labels')
 
     images = [f for f in os.listdir(images_folder) if os.path.isfile(os.path.join(images_folder, f))]
     
@@ -32,6 +32,8 @@ def split_dataset(path, output_folder, train_ratio=0.7, val_ratio=0.15, test_rat
     os.makedirs(test_label_folder, exist_ok=True)
 
     for i, image in enumerate(images):
+        if i%500 == 0:
+            print(f"file_num: {i}")
         src_image_path = os.path.join(images_folder, image)
         src_label_path = os.path.join(labels_folder, os.path.splitext(image)[0] + '.txt')
         
@@ -56,7 +58,13 @@ def split_dataset(path, output_folder, train_ratio=0.7, val_ratio=0.15, test_rat
     print(f"Test images: {test_count}")
 
 
-data_folder = 'datas/re'
-output_folder = 'datasets/recyclables'
+if __name__ == "__main__":
+    working_directory = os.getcwd()
 
-split_dataset(data_folder, output_folder)
+    data_folder = os.path.join(working_directory, "datas", "regulation_datas")
+    output_folder = os.path.join(working_directory, "datasets", "recyclables")
+
+    print(data_folder)
+    print(output_folder)
+
+    split_dataset(data_folder, output_folder)

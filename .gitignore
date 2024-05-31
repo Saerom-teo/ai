@@ -12,3 +12,7 @@ runs/
 
 # etc
 __pycache__/
+
+# files
+*.jpg
+*.png
