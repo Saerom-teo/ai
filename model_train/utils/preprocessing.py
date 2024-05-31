@@ -10,7 +10,7 @@ def get_file_idx(output_path):
     return  file_num-1 if file_num != 0 else 0
 
 def append_to_file(filename, text):
-    with open(filename, 'a') as file:
+    with open(filename, 'a', encoding='utf-8') as file:
         file.write('\n' + text)
 
 def preprocessing(path, label_info):
