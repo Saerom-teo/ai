@@ -5,7 +5,13 @@ from collections import defaultdict
 
 def draw_boxes(image, results: List[Results]) -> Image:
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("arial.ttf", size=20)
+
+    try:
+        font = ImageFont.truetype("arial.ttf", size=20)
+    except OSError:
+        font_path = "/workspace/resources/font/Arial.ttf"
+        font = ImageFont.truetype(font_path, size=20)
+
     for result in results:
         names = result.names
         boxes = result.boxes

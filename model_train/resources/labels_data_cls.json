@@ -1,0 +1,46 @@
+{
+    "labels": [
+        {
+            "no": 0,
+            "ko_cls": "유리병",
+            "en_cls": "Glass_Bottle",
+            "count": 11459
+        },
+        {
+            "no": 1,
+            "ko_cls": "금속캔",
+            "en_cls": "Metal_Can",
+            "count": 21443
+        },
+        {
+            "no": 2,
+            "ko_cls": "종이",
+            "en_cls": "Paper",
+            "count": 9072
+        },
+        {
+            "no": 3,
+            "ko_cls": "페트병",
+            "en_cls": "PET_Bottle",
+            "count": 32782
+        },
+        {
+            "no": 4,
+            "ko_cls": "플라스틱",
+            "en_cls": "Plastic",
+            "count": 41271
+        },
+        {
+            "no": 5,
+            "ko_cls": "스티로폼",
+            "en_cls": "Styrofoam",
+            "count": 6956
+        },
+        {
+            "no": 6,
+            "ko_cls": "비닐",
+            "en_cls": "Vinyl",
+            "count": 4990
+        }
+    ]
+}

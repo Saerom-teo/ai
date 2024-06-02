@@ -1,0 +1,27 @@
+# .git
+.git 
+.gitignore
+.github
+
+# cache
+.cache 
+__pycache__/
+
+# dockerfiles
+Dockerfile
+.dockerignore
+
+# security
+.env
+
+# files
+model_train/
+docs/
+*.jpg
+*.png
+*.jpeg
+*.pt
+
+# etc
+*.zip
+*.md
