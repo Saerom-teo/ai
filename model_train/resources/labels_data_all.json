@@ -1,0 +1,148 @@
+{
+    "labels": [
+        {
+            "no": 0,
+            "ko_cls": "유리병",
+            "ko_detail": "녹색",
+            "en_cls": "Glass Bottle",
+            "en_detail": "Green",
+            "count": 3327
+        },
+        {
+            "no": 1,
+            "ko_cls": "유리병",
+            "ko_detail": "투명",
+            "en_cls": "Glass Bottle",
+            "en_detail": "Clear",
+            "count": 3733
+        },
+        {
+            "no": 2,
+            "ko_cls": "건전지",
+            "ko_detail": "건전지",
+            "en_cls": "Battery",
+            "en_detail": "Battery",
+            "count": 409
+        },
+        {
+            "no": 3,
+            "ko_cls": "형광등",
+            "ko_detail": "형광등",
+            "en_cls": "Fluorescent Lamp",
+            "en_detail": "Fluorescent Lamp",
+            "count": 301
+        },
+        {
+            "no": 4,
+            "ko_cls": "금속캔",
+            "ko_detail": "철캔",
+            "en_cls": "Metal Can",
+            "en_detail": "Steel Can",
+            "count": 10985
+        },
+        {
+            "no": 5,
+            "ko_cls": "금속캔",
+            "ko_detail": "알루미늄캔",
+            "en_cls": "Metal Can",
+            "en_detail": "Aluminum Can",
+            "count": 10458
+        },
+        {
+            "no": 6,
+            "ko_cls": "종이",
+            "ko_detail": "종이",
+            "en_cls": "Paper",
+            "en_detail": "Paper",
+            "count": 9072
+        },
+        {
+            "no": 7,
+            "ko_cls": "페트병",
+            "ko_detail": "무색단일",
+            "en_cls": "PET Bottle",
+            "en_detail": "Clear",
+            "count": 18979
+        },
+        {
+            "no": 8,
+            "ko_cls": "페트병",
+            "ko_detail": "유색단일",
+            "en_cls": "PET Bottle",
+            "en_detail": "Colored",
+            "count": 13800
+        },
+        {
+            "no": 9,
+            "ko_cls": "플라스틱",
+            "ko_detail": "PE",
+            "en_cls": "Plastic",
+            "en_detail": "PE",
+            "count": 9203
+        },
+        {
+            "no": 10,
+            "ko_cls": "플라스틱",
+            "ko_detail": "PP",
+            "en_cls": "Plastic",
+            "en_detail": "PP",
+            "count": 16654
+        },
+        {
+            "no": 11,
+            "ko_cls": "플라스틱",
+            "ko_detail": "PS",
+            "en_cls": "Plastic",
+            "en_detail": "PS",
+            "count": 15412
+        },
+        {
+            "no": 12,
+            "ko_cls": "스티로폼",
+            "ko_detail": "스티로폼",
+            "en_cls": "Styrofoam",
+            "en_detail": "Styrofoam",
+            "count": 6956
+        },
+        {
+            "no": 13,
+            "ko_cls": "비닐",
+            "ko_detail": "비닐",
+            "en_cls": "Vinyl",
+            "en_detail": "Vinyl",
+            "count": 4990
+        },
+        {
+            "no": 14,
+            "ko_cls": "유리병",
+            "ko_detail": "갈색",
+            "en_cls": "Glass Bottle",
+            "en_detail": "Brown",
+            "count": 4399
+        },
+        {
+            "no": 15,
+            "ko_cls": "페트병",
+            "ko_detail": "PE",
+            "en_cls": "PET Bottle",
+            "en_detail": "PE",
+            "count": 1
+        },
+        {
+            "no": 16,
+            "ko_cls": "페트병",
+            "ko_detail": "PP",
+            "en_cls": "PET Bottle",
+            "en_detail": "PP",
+            "count": 2
+        },
+        {
+            "no": 17,
+            "ko_cls": "플라스틱",
+            "ko_detail": "무색단일",
+            "en_cls": "Plastic",
+            "en_detail": "Clear",
+            "count": 2
+        }
+    ]
+}
