@@ -19,8 +19,8 @@ app = FastAPI(lifespan=lifespan)
 
 
 # Including API routers
-app.include_router(info_router.router, prefix="/info")
-app.include_router(predict_router.router, prefix="/predict")
+app.include_router(info_router.router, prefix="/api/info")
+app.include_router(predict_router.router, prefix="/api/predict")
 
 
 if __name__ == "__main__":
