@@ -1,28 +1,23 @@
+from fastapi import FastAPI
+import uvicorn
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from lib.model_manager import load_models, clear_all_models
 
-
-def fake_answer_to_everything_ml_model(x: float):
-    return x * 42
-
-
-ml_models = {}
+from domain import predict_router
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Load the ML model
-    ml_models["answer_to_everything"] = fake_answer_to_everything_ml_model
+    load_models()
     yield
-    # Clean up the ML models and release the resources
-    ml_models.clear()
+    clear_all_models()
 
 
 app = FastAPI(lifespan=lifespan)
 
+# Including API routers
+app.include_router(predict_router.router, prefix="/predict")
 
-@app.get("/predict")
-async def predict(x: float):
-    result = ml_models["answer_to_everything"](x)
-    return {"result": result}
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=9090, reload=False)

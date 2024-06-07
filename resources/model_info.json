@@ -1,0 +1,12 @@
+{
+    "model_list": [
+        {
+            "name": "yolov8n_0531_e30.pt",
+            "id": "15LnWrliaVUHSPy6udWNux_yW87T7zqKW"
+        },
+        {
+            "name": "yolov8n_0604_e50.pt",
+            "id": "1WVvg0BLGgcuQgEsxLzRUa2kfTqtf-ERK"
+        }
+    ]
+}

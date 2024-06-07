@@ -1,20 +1,21 @@
-from fastapi import FastAPI, File, UploadFile, Response
-from PIL import Image
+from fastapi import APIRouter, UploadFile, Response, File, Depends
 from ultralytics import YOLO
+from PIL import Image
 import io
+from typing import Dict
 
+from lib.model_manager import get_models
 from lib.logger_config import setup_logger
-from lib.model_load import model_load
 from lib.image_controll import draw_boxes, predict_summary
 
 
-app = FastAPI()
 logger = setup_logger()
-model = YOLO(model_load())
+router = APIRouter()
 
 
-@app.post("/predict")
-async def upload_image(file: UploadFile = File(...)):
+@router.post("/predict")
+async def upload_image(file: UploadFile = File(...), models: Dict[str, YOLO] = Depends(get_models)):
+    model = models.get('yolov8n_0531_e30.pt')
     contents = await file.read()
     image = Image.open(io.BytesIO(contents))
 

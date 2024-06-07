@@ -3,6 +3,7 @@ datas/
 datasets/
 recyclables_origin/
 test/
+model_results/
 
 # results
 runs/
@@ -16,3 +17,6 @@ __pycache__/
 # files
 *.jpg
 *.png
+
+# security
+.env

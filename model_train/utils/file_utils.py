@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 import cv2
+from PIL import Image
 import numpy as np
 
 def search_label(labels_path, name):
@@ -152,6 +153,8 @@ def draw_rectangle_from_ratios(image_path, ratios_list, output_dir, result_name)
     # print(f"Image saved with rectangles at '{output_file_path}'")
 
 def resize_image(image_path, output_dir, result_name):
+    # image_pil = Image.open(image_path)
+    # image = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
     image = cv2.imread(image_path)
     if image is None:
         print(f"Error: Could not open or find the image '{image_path}'")
@@ -225,6 +228,16 @@ def check_data(ko_cls, ko_detail, file_path="lable_name.json"):
     
     return False
 
+def check_data2(ko_cls, file_path="lable_name.json"):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+    
+    for label in data.get("labels", []):
+        if label.get("ko_cls") == ko_cls:
+            return {"no": label.get("no"), "en_cls": label.get("en_cls")}
+    
+    return False
+
 def get_center_points(datas, scale, resize_name, output_path, file_info):
     label_num_list = []
     label_name_list = []
@@ -239,6 +252,29 @@ def get_center_points(datas, scale, resize_name, output_path, file_info):
             center_points = to_center_coordinates_2d(point_array[0])
         elif data["shape_type"] == "POLYGON":
             draw_polygon(resize_name, point_array, os.path.join(output_path, "annotation", label_name, "poly_to_box"))
+            center_points = polygon_to_bounding_box(point_array)
+        else:
+            raise Exception(f'shape_type : {data["shape_type"]}')
+
+        label_num_list.append(label_no)
+        label_name_list.append(label_name)
+        center_points_list.append(center_points)
+    return label_num_list, label_name_list, center_points_list
+
+def get_center_points2(datas, scale, resize_name, output_path, file_info):
+    label_num_list = []
+    label_name_list = []
+    center_points_list = []
+    for data in datas:
+        en_data = check_data2(data["cls"], file_path=file_info)
+        label_no = en_data["no"]
+        label_name = en_data["en_cls"]
+        point_array = [[point*scale for point in points] for points in data["points"]]
+
+        if data["shape_type"] == "BOX":
+            center_points = to_center_coordinates_2d(point_array[0])
+        elif data["shape_type"] == "POLYGON":
+            # draw_polygon(resize_name, point_array, os.path.join(output_path, "annotation", label_name, "poly_to_box"))
             center_points = polygon_to_bounding_box(point_array)
         else:
             raise Exception(f'shape_type : {data["shape_type"]}')
