@@ -1,32 +1,27 @@
-from fastapi import FastAPI, File, UploadFile, Response
-from PIL import Image
-from ultralytics import YOLO
-import io
+from fastapi import FastAPI
+import uvicorn
+from contextlib import asynccontextmanager
 
-from lib.logger_config import setup_logger
-from lib.model_load import model_load
-from lib.image_controll import draw_boxes, predict_summary
+from lib.model_manager import load_models, clear_all_models
 
-
-app = FastAPI()
-logger = setup_logger()
-model = YOLO(model_load())
+from domain import info_router
+from domain import predict_router
 
 
-@app.post("/predict")
-async def upload_image(file: UploadFile = File(...)):
-    contents = await file.read()
-    image = Image.open(io.BytesIO(contents))
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    load_models()
+    yield
+    clear_all_models()
 
-    results = model.predict(image, conf=0.25, verbose=False)
-    logger.info(f"📌 Prediction results - {predict_summary(results)}")
 
-    # Draw boxes on the image
-    image_with_boxes = draw_boxes(image, results)
+app = FastAPI(lifespan=lifespan)
 
-    # Convert image to bytes
-    img_byte_arr = io.BytesIO()
-    image_with_boxes.save(img_byte_arr, format='JPEG')
-    img_byte_arr.seek(0)
 
-    return Response(content=img_byte_arr.getvalue(), media_type="image/jpeg")
+# Including API routers
+app.include_router(info_router.router, prefix="/api/info")
+app.include_router(predict_router.router, prefix="/api/predict")
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=9090, reload=False)

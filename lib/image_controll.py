@@ -29,7 +29,7 @@ def draw_boxes(image, results: List[Results]) -> Image:
     return image
 
 
-def predict_summary(results: List[Results]):
+def predict_summary(results: List[Results], model_name: str):
     result_messages = []
     for index, result in enumerate(results):
         names = result.names
@@ -46,4 +46,4 @@ def predict_summary(results: List[Results]):
         image_shape_str = "x".join(map(str, result.orig_shape))
         total_type_num_str = ", ".join([f"{key} {value}" for key, value in dict(result_dic).items()])
         result_messages.append(f'{index}: {image_shape_str} {total_type_num_str}, {total_time_str}')
-    return ' '.join(result_messages)
+    return model_name + ' '+ ' '.join(result_messages)
