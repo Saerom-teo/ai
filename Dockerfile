@@ -1,9 +1,10 @@
-FROM python:3.10-slim
+FROM python:3.10-slim-buster
 
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --upgrade pip
 
 WORKDIR /workspace
     
