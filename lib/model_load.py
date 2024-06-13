@@ -11,8 +11,12 @@ logger = setup_logger()
 def model_download(model, resource_dir):
     logger.info("Starting model download...")
     
-    file_name = gdown.download(id=model['id'], output=os.path.join(resource_dir, model['name']), quiet=True)
-    logger.info(f"Downloaded {file_name}")
+    file_name = None
+    try:
+        file_name = gdown.download(id=model['id'], output=os.path.join(resource_dir, model['name']), quiet=True)
+        logger.info(f"Downloaded {file_name}")
+    except gdown.exceptions.FileURLRetrievalError as e:
+        logger.error(f"Failed to download the model - {model['name']}")
     
     return file_name
 
@@ -30,8 +34,10 @@ def load_all_models():
 
     model_dict = {}
     for model in info['model_list']:
-        file_name = os.path.join(resource_dir, model['name']) if model['name'] in pt_files else model_download(model, resource_dir)
-        model_dict[model['name']] = YOLO(file_name)
+        if model['use']:
+            file_name = os.path.join(resource_dir, model['name']) if model['name'] in pt_files else model_download(model, resource_dir)
+            if file_name:
+                model_dict[model['name']] = YOLO(file_name)
 
     logger.info(f"💡 Completed loading all models: {list(model_dict.keys())}")
     return model_dict

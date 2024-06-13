@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 from contextlib import asynccontextmanager
 
@@ -22,6 +23,8 @@ app = FastAPI(lifespan=lifespan)
 app.include_router(info_router.router, prefix="/api/info")
 app.include_router(predict_router.router, prefix="/api/predict")
 
+# Mounting the static folder
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=9090, reload=False)

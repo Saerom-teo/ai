@@ -1,6 +1,7 @@
 from ultralytics import YOLO
-import os
+from fastapi import UploadFile
 from typing import Dict
+import os
 
 from lib.const import DEFAULT_MODEL, RESULT_SAVE_DIR, UPLOAD_DIR
 from lib.logger_config import setup_logger
@@ -25,14 +26,11 @@ async def predict(models: Dict[str, YOLO], request: PredictionRequest, save=Fals
         save_dir = RESULT_SAVE_DIR
         os.makedirs(save_dir, exist_ok=True)
         for result in results:
-            image_path = os.path.join(save_dir, os.path.basename(result.path))
+            image_path = os.path.join(save_dir, f"{os.path.splitext(model_name)[0]}_{os.path.basename(result.path)}")
             result.save(filename=image_path)
             result_images.append(image_path)
 
     return {"result_images": result_images}
-
-import os
-from fastapi import UploadFile
 
 async def save_uploaded_file(uploaded_file: UploadFile) -> str:
     upload_dir = UPLOAD_DIR

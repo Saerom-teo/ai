@@ -1,12 +1,63 @@
 {
     "model_list": [
         {
-            "name": "yolov8n_0531_e30.pt",
-            "id": "15LnWrliaVUHSPy6udWNux_yW87T7zqKW"
+            "name": "yolov8n_0531_e30_b16.pt",
+            "id": "15LnWrliaVUHSPy6udWNux_yW87T7zqKW",
+            "use": true
         },
         {
-            "name": "yolov8n_0604_e50.pt",
-            "id": "1WVvg0BLGgcuQgEsxLzRUa2kfTqtf-ERK"
+            "name": "yolov8n_0604_e50_b16.pt",
+            "id": "1WVvg0BLGgcuQgEsxLzRUa2kfTqtf-ERK",
+            "use": true
+        },
+        {
+            "name": "yolov8n_0607_e50_b128.pt",
+            "id": "1i3Io8lpGMIt7p-aYHswljcWSPzXVDJTo",
+            "use": true
+        },
+        {
+            "name": "yolov8n_0607_e100_b16.pt",
+            "id": "1GBB3W3vE_AdwSGZOSmIOz150CZZwYUd8",
+            "use": true
+        },
+        
+        {
+            "name": "yolov8s_0607_e50_b64.pt",
+            "id": "1X3T5KpsAGAqTXsi1LNzgohhqBYZ3fFiW",
+            "use": true
+        },
+        {
+            "name": "yolov8s_0608_e100_b64.pt",
+            "id": "1mtTMrsXeC2cqoB8G04JvG8pdIjswX4Jw",
+            "use": true
+        },
+
+        {
+            "name": "yolov5su_0608_e50_b64.pt",
+            "id": "1DHrdlWDIlqEBXI91evqhjSwzDfzc40_l",
+            "use": true
+        },
+        {
+            "name": "yolov5su_0608_e100_b64.pt",
+            "id": "1YhWPdbcl45lcRTd5ebNf76h_0mUQwGec",
+            "use": true
+        },
+
+        {
+            "name": "yolov5mu_0611_e50_b64.pt",
+            "id": "1AbFlqgOdSW8MoUEcuPx43V0tPieWBWWU",
+            "use": true
+        },
+        {
+            "name": "yolov5mu_0612_e100_b64.pt",
+            "id": "1Ld9OCsEsTDCoS7ZUw20urWgezSpI8k7A",
+            "use": true
+        },
+
+        {
+            "name": "yolov10n_0612_e50_b64.pt",
+            "id": "17BL9FJ831ujNsLcVOBgPC4Y7ZDoMdbGk",
+            "use": false
         }
     ]
 }
