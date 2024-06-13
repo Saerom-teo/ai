@@ -108,10 +108,10 @@ def load_label_names(json_file):
 
 
 # Example usage:
-data_dir = 'datas/regulation_datas'
-dataset_dir = 'datasets/recyclables'
+data_dir = 'datas/regulation_datas_2'
+dataset_dir = 'datasets/recyclables_2'
 json_file = 'resources/labels_data_cls.json'
-# organize_dataset(data_dir, dataset_dir)
+organize_dataset(data_dir, dataset_dir)
 
 # Count labels in each dataset split
 label_counts = count_labels(os.path.join(dataset_dir, 'labels'))
@@ -120,4 +120,4 @@ label_counts = count_labels(os.path.join(dataset_dir, 'labels'))
 label_map = load_label_names(json_file)
 
 # Plot and save the label distribution
-plot_label_distribution(label_counts, label_map, 'label_distribution.png')
+plot_label_distribution(label_counts, label_map, 'label_distribution_2.png')

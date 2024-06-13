@@ -153,9 +153,9 @@ def draw_rectangle_from_ratios(image_path, ratios_list, output_dir, result_name)
     # print(f"Image saved with rectangles at '{output_file_path}'")
 
 def resize_image(image_path, output_dir, result_name):
-    image_pil = Image.open(image_path)
-    image = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
-    # image = cv2.imread(image_path)
+    # image_pil = Image.open(image_path)
+    # image = cv2.cvtColor(np.array(image_pil), cv2.COLOR_RGB2BGR)
+    image = cv2.imread(image_path)
     if image is None:
         print(f"Error: Could not open or find the image '{image_path}'")
         return None, None

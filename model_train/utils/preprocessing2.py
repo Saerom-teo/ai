@@ -4,14 +4,14 @@ import file_utils
 import shutil
 
 
-def get_file_idx(output_path):
+def get_file_idx(output_path, label):
     """
     Create 'images' directory in output path if not exists.
     Return the current file index based on the number of files in 'images' directory.
     """
-    os.makedirs(os.path.join(output_path, "images"), exist_ok=True)
-    file_num = len(os.listdir(os.path.join(output_path, "images")))
-    return file_num - 1 if file_num != 0 else 0
+    directory_path = os.path.join(output_path, "images", label)
+    os.makedirs(directory_path, exist_ok=True)
+    return len(os.listdir(directory_path))
 
 def append_to_file(filename, text):
     """
@@ -26,13 +26,13 @@ def process_image_folder(folder, image_folder, label_folder, output_path, label_
     """
     images_path = os.path.join(image_folder, folder)
     file_list = os.listdir(images_path)[:]
-    file_num = get_file_idx(output_path)
-    file_index = 0
+    # file_num = get_file_idx(output_path)
+    # file_index = 0
     
     print(f'preprocessing... folder: {folder}, len: {len(file_list)}')
     for file in tqdm(file_list, total=len(file_list), desc='images'.ljust(13), leave=True):
-        result_name = str(file_num + file_index).zfill(7)
-        file_index += 1
+        # result_name = str(file_num + file_index).zfill(7)
+        # file_index += 1
 
         name = os.path.splitext(file)[0]
 
@@ -51,6 +51,8 @@ def process_image_folder(folder, image_folder, label_folder, output_path, label_
             continue  # Skip to next file if any label is not found
         
         data_dict = file_utils.check_data2(datas[0]["cls"], file_path=label_info)
+        file_index = get_file_idx(output_path, data_dict['en_cls'])
+        result_name = str(file_index).zfill(7)
         resize_name, scale = file_utils.resize_image(image_file, os.path.join(output_path, "images", data_dict['en_cls']), result_name)
         if resize_name is None and scale is None:
             # print(f"file error / name: {image_file}")
@@ -65,7 +67,7 @@ def process_image_folder(folder, image_folder, label_folder, output_path, label_
         file_utils.list_to_txt(label_num_list, relative_coordinates_list, os.path.join(output_path, "labels", data_dict['en_cls']), result_name + ".txt")
         file_utils.draw_rectangle_from_ratios(resize_name, relative_coordinates_list, os.path.join(output_path, "annotation", label_name_list[0], "center"), result_name)
 
-def preprocessing(path, label_info):
+def preprocessing(path, output_path, label_info):
     """
     Main preprocessing function to process all image folders and their images.
     """
@@ -97,4 +99,4 @@ if __name__ == "__main__":
     output_path = os.path.join(working_directory, output_path)
     label_info = os.path.join(working_directory, "resources", "labels_data_cls.json")
 
-    preprocessing(path, label_info)
+    preprocessing(path, output_path, label_info)
