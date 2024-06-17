@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import uvicorn
+import os
 from contextlib import asynccontextmanager
 
 from lib.model_manager import load_models, clear_all_models
@@ -24,6 +25,7 @@ app.include_router(info_router.router, prefix="/api/info")
 app.include_router(predict_router.router, prefix="/api/predict")
 
 # Mounting the static folder
+os.makedirs('static', exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 if __name__ == "__main__":
