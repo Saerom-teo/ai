@@ -41,7 +41,7 @@ def upload_to_s3(file_name, object_name=None):
     return True
 
 if __name__ == "__main__":
-    uploaded = upload_to_s3('local_file.txt')
+    uploaded = upload_to_s3('resources/test_images/test01.jpg')
     if uploaded:
         print("File was uploaded successfully")
     else:
