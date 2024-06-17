@@ -5,18 +5,21 @@ recyclables_origin/
 test/
 model_results/
 
+# static
+static/
+
 # results
 runs/
 
 # models
 *.pt
+*.onnx
 
 # etc
 __pycache__/
 
 # files
-*.jpg
-*.png
+
 
 # security
 *.env

@@ -17,10 +17,12 @@ Dockerfile
 # files
 model_train/
 docs/
+static/
 *.jpg
 *.png
 *.jpeg
 *.pt
+*.onnx
 
 # etc
 *.zip

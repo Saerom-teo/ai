@@ -30,7 +30,7 @@ async def predict(models: Dict[str, YOLO], request: PredictionRequest, save=Fals
             result.save(filename=image_path)
             result_images.append(image_path)
 
-    return {"result_images": result_images}
+    return {"results": results, "result_images": result_images, "predict_summary": predict_summary(results, model_name)}
 
 async def save_uploaded_file(uploaded_file: UploadFile) -> str:
     upload_dir = UPLOAD_DIR
