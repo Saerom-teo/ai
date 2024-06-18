@@ -4,7 +4,7 @@ import os
 import asyncio
 
 from lib.model_manager import load_models, get_models
-from domain.predict_service import predict
+from lib.predict import predict
 from domain.predict_schema import PredictionRequest
 from lib.image_controll import combine_images_grid
 
