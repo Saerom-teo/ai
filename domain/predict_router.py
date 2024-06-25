@@ -27,11 +27,11 @@ async def upload_json(request: PredictionRequest, models: Dict[str, YOLO] = Depe
     response = {
         "result": "clear",
         "images": [
-            "static/results/1718609562963.jpg.jpg",
-            "static/results/1718609563649.jpg.jpg",
-            "static/results/1718609563762.jpg.jpg",
-            "static/results/1718609563959.jpg.jpg",
-            "static/results/1718609564154.jpg"
+            "https://saerom-teo.s3.ap-northeast-2.amazonaws.com/AI/1718609562963.jpg",
+            "https://saerom-teo.s3.ap-northeast-2.amazonaws.com/AI/1718609563649.jpg",
+            "https://saerom-teo.s3.ap-northeast-2.amazonaws.com/AI/1718609563762.jpg",
+            "https://saerom-teo.s3.ap-northeast-2.amazonaws.com/AI/1718609563959.jpg",
+            "https://saerom-teo.s3.ap-northeast-2.amazonaws.com/AI/1718609564154.jpg"
         ]
     }
 
