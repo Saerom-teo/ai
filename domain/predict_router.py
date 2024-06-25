@@ -1,29 +1,38 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 from ultralytics import YOLO
-import os
 from typing import Dict
 
 from lib.model_manager import get_models
 from lib.logger_config import setup_logger
-from domain.predict_service import predict, save_uploaded_file
-from domain.predict_schema import PredictionRequest
+
+from .predict_service import predict_json, predict_image
+from .predict_schema import PredictionRequest, PredictionResponse
 
 logger = setup_logger()
 router = APIRouter()
 
-@router.post("/json")
+@router.post("/json", response_model=PredictionResponse)
 async def upload_json(request: PredictionRequest, models: Dict[str, YOLO] = Depends(get_models)):
-    result = await predict(models, request, save=True)
-    return result['result_images']
+    response_data = await predict_json(models, request)
+    return response_data
 
-@router.post("/image")
+@router.post("/image", response_model=PredictionResponse)
 async def upload_image(file: UploadFile = File(...), models: Dict[str, YOLO] = Depends(get_models)):
-    file_path = await save_uploaded_file(file)
+    response_data = await predict_image(models, file)
+    return response_data
 
-    data_dict = {"images": [file_path]}
-    request = PredictionRequest(**data_dict)
-    
-    result = await predict(models, request, save=True)
+@router.post("/test", response_model=PredictionResponse)
+async def upload_json(request: PredictionRequest, models: Dict[str, YOLO] = Depends(get_models)):
+    logger.info("📍 Handling test endpoint")
+    response = {
+        "result": "clear",
+        "images": [
+            "static/results/1718609562963.jpg.jpg",
+            "static/results/1718609563649.jpg.jpg",
+            "static/results/1718609563762.jpg.jpg",
+            "static/results/1718609563959.jpg.jpg",
+            "static/results/1718609564154.jpg"
+        ]
+    }
 
-    os.remove(file_path)
-    return result['result_images']
+    return response
