@@ -30,6 +30,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           port: 2222
           username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.EC2_PASSWORD }}
+          key: ${{ secrets.SSH_PASSWORD }}
           script: |
             mkdir git-action-test
