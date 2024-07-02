@@ -32,5 +32,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            cd cicd-test2
             kubectl delete pipelinerun git-clone-build-pipelinerun
             kubectl apply -f git-clone-build-pipelinerun.yaml
