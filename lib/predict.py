@@ -7,7 +7,7 @@ from ultralytics.engine.results import Results
 from lib.const import DEFAULT_MODEL, RESULT_SAVE_DIR, UPLOAD_DIR
 from lib.logger_config import setup_logger
 from lib.image_controll import predict_summary
-from lib.upload_image import upload_image
+from lib.upload_image import upload_image, upload_to_s3
 from domain.predict_schema import PredictionRequest
 
 
@@ -27,10 +27,19 @@ async def predict(models: Dict[str, YOLO], request: PredictionRequest):
         result = model.predict(image, conf=0.25, verbose=False)
         results.append(result[0])
     
-    logger.info(f"📌 Prediction results - {predict_summary(results, model_name)}")
-
     # Save the results
-    result_images = upload_image(RESULT_SAVE_DIR, results)
+    result_images = []
+    for result in results:
+        image_path = os.path.join(RESULT_SAVE_DIR, f"{os.path.basename(result.path)}")
+        result.save(filename=image_path)
+
+        url = upload_to_s3(image_path)
+
+        result_images.append(url)
+
+    # result_images = upload_image(RESULT_SAVE_DIR, results)
+
+    logger.info(f"📌 Prediction results - {predict_summary(results, model_name)}")
 
     return {"results": results, "result_images": result_images, "predict_summary": predict_summary(results, model_name)}
 
