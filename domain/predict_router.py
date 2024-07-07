@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 from ultralytics import YOLO
 from typing import Dict
+import asyncio
 
 from lib.model_manager import get_models
 from lib.logger_config import setup_logger
@@ -24,6 +25,9 @@ async def upload_image(file: UploadFile = File(...), models: Dict[str, YOLO] = D
 @router.post("/test", response_model=PredictionResponse)
 async def upload_json(request: PredictionRequest, models: Dict[str, YOLO] = Depends(get_models)):
     logger.info("📍 Handling test endpoint")
+
+    await asyncio.sleep(5)
+
     response = {
         "result": "clear",
         "images": [
