@@ -18,7 +18,7 @@ async def predict_json(models: Dict[str, YOLO], request: PredictionRequest):
 
 async def predict_image(models, file):
     file_path = await save_uploaded_file(file)
-
+    file_path = file_path.replace("\\", "/")
     data_dict = {"images": [file_path]}
     request = PredictionRequest(**data_dict)
     
@@ -39,4 +39,4 @@ async def save_uploaded_file(uploaded_file: UploadFile) -> str:
     
     with open(file_path, "wb") as buffer:
         buffer.write(await uploaded_file.read())
-    return file_path
+        return file_path
