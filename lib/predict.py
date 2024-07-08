@@ -89,6 +89,8 @@ def filter_classes(cls: np.ndarray, xywh: np.ndarray, exclude_classes: list) -> 
     return filtered_cls, filtered_xywh
 
 def draw_circle_on_image(image_path: str, xywh: np.ndarray) -> str:
+    os.makedirs(RESULT_SAVE_DIR, exist_ok=True)
+
     image = cv2.imread(image_path)
     if image is None:
         raise FileNotFoundError(f"Image not found at {image_path}")

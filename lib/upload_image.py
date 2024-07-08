@@ -42,7 +42,6 @@ def upload_image(save_dir: str, results: List[Results]):
 def upload_to_s3(file_name, object_name=None):
     if not S3_ACCESS:
         return file_name
-    log_info("⚔️ 왜 업로드가 안될까")
     if object_name is None:
         object_name = os.path.basename(file_name)
 
@@ -57,7 +56,6 @@ def upload_to_s3(file_name, object_name=None):
         )
 
         file_url = f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{object_name}"
-        log_info(f"⚔️ 왜 업로드가 안될까2222 - {file_url}")
 
         # os.remove(file_name)
         return file_url
