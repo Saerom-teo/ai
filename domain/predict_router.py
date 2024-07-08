@@ -6,7 +6,7 @@ import asyncio
 from lib.model_manager import get_models
 from lib.logger_config import setup_logger
 
-from .predict_service import predict_json, predict_image
+from .predict_service import predict_json, predict_image, predict_all
 from .predict_schema import PredictionRequest, PredictionResponse
 
 logger = setup_logger()
@@ -20,6 +20,11 @@ async def upload_json(request: PredictionRequest, models: Dict[str, YOLO] = Depe
 @router.post("/image", response_model=PredictionResponse)
 async def upload_image(file: UploadFile = File(...), models: Dict[str, YOLO] = Depends(get_models)):
     response_data = await predict_image(models, file)
+    return response_data
+
+@router.post("/test-all")
+async def test_all(file: UploadFile = File(...), models: Dict[str, YOLO] = Depends(get_models)):
+    response_data = await predict_all(models, file)
     return response_data
 
 @router.post("/test", response_model=PredictionResponse)
