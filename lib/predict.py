@@ -26,20 +26,11 @@ async def predict(models: Dict[str, YOLO], request: PredictionRequest) -> List[R
     
     results: List[Results] = []
     for image in images:
-        result = model.predict(image, conf=0.25, verbose=False)
+        result = model.predict(image, conf=0.5, verbose=False)
         results.append(result[0])
     
     logger.info(f"📌 Prediction results - {predict_summary(results, model_name)}")
     return results
-
-        # url = upload_to_s3(image_path)
-
-        # result_images.append(url)
-
-    # result_images = upload_image(RESULT_SAVE_DIR, results)
-
-
-    # return {"results": results, "result_images": result_images, "predict_summary": predict_summary(results, model_name)}
 
 
 def download_images(urls: List[str]):
