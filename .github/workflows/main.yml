@@ -31,3 +31,39 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+  deploy-to-server:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 2222
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            # Stop and remove the existing container
+            podman stop ${{ env.CONTAINER_NAME }} || true
+            podman rm ${{ env.CONTAINER_NAME }} || true
+
+            podman login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
+
+            # Pull the latest image
+            podman pull docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+            # Run the new container
+            podman run --name ${{ env.CONTAINER_NAME }} -d -p 80:8080 docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+            # Wait for the container to fully start
+            sleep 10
+
+            # Copy the files
+            podman cp /root/security/saerom-app/. ${{ env.CONTAINER_NAME }}:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes
+
+            # Restart the container
+            podman restart ${{ env.CONTAINER_NAME }}
+            
+            # Clean up unused Docker images
+            podman image prune -af
