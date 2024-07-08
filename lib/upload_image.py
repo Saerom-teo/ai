@@ -5,7 +5,7 @@ import os
 from ultralytics.engine.results import Results
 from typing import List
 
-from lib.logger_config import log_warning, log_error
+from lib.logger_config import log_warning, log_error, log_info
 
 
 load_dotenv()
@@ -19,6 +19,8 @@ S3_ACCESS = True
 if ACCESS_KEY is None or SECRET_KEY is None or REGION_NAME is None or BUCKET_NAME is None:
     log_warning("S3 credentials or configuration are missing. Cannot upload file.")
     S3_ACCESS = False
+else:
+    log_info("🔗 S3 credentials and configuration loaded successfully.")
 
 
 def upload_image(save_dir: str, results: List[Results]):
