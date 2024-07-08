@@ -4,7 +4,7 @@
             "name": "yolov8n_0531_e30_b16",
             "pt": "15LnWrliaVUHSPy6udWNux_yW87T7zqKW",
             "onnx": "16J4aJ5PmXKsZdfwJ1VRovwcg486Wrj8y",
-            "use": true
+            "use": false
         },
         {
             "name": "yolov8n_0604_e50_b16",
@@ -22,46 +22,46 @@
             "name": "yolov8n_0607_e100_b16",
             "pt": "1GBB3W3vE_AdwSGZOSmIOz150CZZwYUd8",
             "onnx": "1yjX70o8g5P7KJQnpRRdSspCLaYqvlCWT",
-            "use": false
+            "use": true
         },
         
         {
             "name": "yolov8s_0607_e50_b64",
             "pt": "1X3T5KpsAGAqTXsi1LNzgohhqBYZ3fFiW",
             "onnx": "1DSrOuBhxfU_UxCXkfZw44VZ3Zch0CD3V",
-            "use": false
+            "use": true
         },
         {
             "name": "yolov8s_0608_e100_b64",
             "pt": "1mtTMrsXeC2cqoB8G04JvG8pdIjswX4Jw",
             "onnx": "1WrACNAOz7cl8U18JMkMYgaAyhVMSg37C",
-            "use": false
+            "use": true
         },
 
         {
             "name": "yolov5su_0608_e50_b64",
             "pt": "1DHrdlWDIlqEBXI91evqhjSwzDfzc40_l",
             "onnx": "1qCboFBSW8zrjjPId6uVOa7udDDc51ZKL",
-            "use": false
+            "use": true
         },
         {
             "name": "yolov5su_0608_e100_b64",
             "pt": "1YhWPdbcl45lcRTd5ebNf76h_0mUQwGec",
             "onnx": "1HP-OEb8YxsnKgBpr09kE_pme_ORiYEYi",
-            "use": false
+            "use": true
         },
 
         {
             "name": "yolov5mu_0611_e50_b64",
             "pt": "1AbFlqgOdSW8MoUEcuPx43V0tPieWBWWU",
             "onnx": "1NXl0FCorYCXtYAZpWH9CUaxiObHzX2p9",
-            "use": false
+            "use": true
         },
         {
             "name": "yolov5mu_0612_e100_b64",
             "pt": "1Ld9OCsEsTDCoS7ZUw20urWgezSpI8k7A",
             "onnx": "1p9vOHz3YlmUSEYw-USCLmYKe7wRfGjvG",
-            "use": false
+            "use": true
         },
 
         {

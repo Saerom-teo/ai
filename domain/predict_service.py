@@ -3,16 +3,19 @@ from ultralytics import YOLO
 from typing import Dict
 import os
 
-from lib.predict import predict
+from lib.predict import predict, result_analyze
 from .predict_schema import PredictionRequest, PredictionResponse
-from lib.const import UPLOAD_DIR
+from lib.const import UPLOAD_DIR, RESULT_SAVE_DIR
 
-async def predict_json(models: Dict[str, YOLO], request: PredictionRequest):    
-    result = await predict(models, request)
+
+async def predict_json(models: Dict[str, YOLO], request: PredictionRequest):
+    results = await predict(models, request)
+
+    filtered_cls, result_images = result_analyze(results)
 
     response_data  = PredictionResponse(
-        result='clear',
-        images=result['result_images']
+        result='clear' if len(filtered_cls)==0 else 'deny',
+        images=result_images
     )
     return response_data
 
@@ -22,14 +25,42 @@ async def predict_image(models, file):
     data_dict = {"images": [file_path]}
     request = PredictionRequest(**data_dict)
     
-    result = await predict(models, request)
-    os.remove(file_path)
+    results = await predict(models, request)
+
+    filtered_cls, result_images = result_analyze(results)
 
     response_data  = PredictionResponse(
-        result='clear',
-        images=result['result_images']
+        result='clear' if len(filtered_cls)==0 else 'deny',
+        images=result_images
     )
     return response_data
+
+async def predict_all(models: Dict[str, YOLO], file):
+    file_path = await save_uploaded_file(file)
+    file_path = file_path.replace("\\", "/")
+
+    for model_name in models.keys():
+        print(model_name)
+        data_dict = {"modelName": model_name,"images": [file_path]}
+        request = PredictionRequest(**data_dict)
+    
+        results = await predict(models, request)
+
+        # Save the results
+        os.makedirs(RESULT_SAVE_DIR, exist_ok=True)
+        result_images = []
+        for result in results:
+            image_name = f"{os.path.splitext(os.path.basename(result.path))[0]}_{model_name.split('.')[0]}"
+            print(image_name)
+            image_path = os.path.join(RESULT_SAVE_DIR, f"{image_name}.jpg")
+            result.save(filename=image_path)
+
+    # response_data  = PredictionResponse(
+    #     result='clear',
+    #     images=result['result_images']
+    # )
+    # return response_data
+
 
 
 async def save_uploaded_file(uploaded_file: UploadFile) -> str:

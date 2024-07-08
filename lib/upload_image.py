@@ -56,7 +56,7 @@ def upload_to_s3(file_name, object_name=None):
 
         file_url = f"https://{BUCKET_NAME}.s3.{REGION_NAME}.amazonaws.com/{object_name}"
 
-        os.remove(file_name)
+        # os.remove(file_name)
         return file_url
 
     except FileNotFoundError:
