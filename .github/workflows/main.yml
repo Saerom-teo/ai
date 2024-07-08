@@ -54,16 +54,7 @@ jobs:
             podman pull docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
             # Run the new container
-            podman run --name ${{ env.CONTAINER_NAME }} -d -p 80:8080 docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-
-            # Wait for the container to fully start
-            sleep 10
-
-            # Copy the files
-            podman cp /root/security/saerom-app/. ${{ env.CONTAINER_NAME }}:/usr/local/tomcat/webapps/ROOT/WEB-INF/classes
-
-            # Restart the container
-            podman restart ${{ env.CONTAINER_NAME }}
+            podman run -d --name saerom-ai -p 8000:8000 -v /root/security/saerom-ai/.env:/app/.env docker.io/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
             
             # Clean up unused Docker images
             podman image prune -af
