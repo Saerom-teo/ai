@@ -57,7 +57,7 @@ def download_images(urls: List[str]):
             with open(save_path, 'wb') as f:
                 f.write(response.content)
 
-            images.append(url)
+            images.append(save_path)
 
         except Exception as e:
             logger.error(f"Failed to download image: {e}")
